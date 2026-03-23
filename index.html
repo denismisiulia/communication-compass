@@ -7,169 +7,50 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
-/* ════════════════════════════════════════
-   DESIGN TOKENS
-════════════════════════════════════════ */
 :root {
-  --bg: #f5f2eb;
-  --ink: #1a1814;
-  --ink-light: #6b6560;
-  --accent: #c8e63c;
-  --accent-dark: #a8c420;
-  --direct: #e63c3c;
-  --indirect: #3c7be6;
-  --benchmark: #e6963c;
-  --brand-green: #5cb85c;
-  --card-bg: #ffffff;
-  --border: #d4cfc6;
-  --zone-brand: rgba(200,230,60,0.12);
-  --shadow: 0 2px 12px rgba(26,24,20,0.10);
+  --bg: #f5f2eb; --ink: #1a1814; --ink-light: #6b6560;
+  --accent: #c8e63c; --accent-dark: #a8c420;
+  --direct: #e63c3c; --indirect: #3c7be6; --benchmark: #e6963c;
+  --brand-green: #5cb85c; --card-bg: #ffffff; --border: #d4cfc6;
+  --zone-brand: rgba(200,230,60,0.12); --shadow: 0 2px 12px rgba(26,24,20,0.10);
   --shadow-lg: 0 8px 40px rgba(26,24,20,0.18);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'DM Mono', monospace; background: var(--bg); color: var(--ink); min-height: 100vh; }
 
-/* ════════════════════════════════════════
-   AUTH SCREENS (Login / Register)
-════════════════════════════════════════ */
+/* ── AUTH SCREEN ── */
 #auth-screen {
-  display: flex; align-items: center; justify-content: center;
-  min-height: 100vh;
-  background: var(--bg);
+  display: flex; align-items: center; justify-content: center; min-height: 100vh;
   background-image: radial-gradient(circle at 20% 80%, rgba(200,230,60,0.12) 0%, transparent 50%),
                     radial-gradient(circle at 80% 20%, rgba(60,123,230,0.06) 0%, transparent 50%);
 }
-.auth-card {
-  width: 440px; max-width: 96vw;
-  background: var(--card-bg);
-  border: 1.5px solid var(--border);
-  border-radius: 16px;
-  padding: 40px 44px;
-  box-shadow: var(--shadow-lg);
-}
-.auth-logo {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.5rem; margin-bottom: 6px;
-}
+.auth-card { width: 440px; max-width: 96vw; background: var(--card-bg); border: 1.5px solid var(--border); border-radius: 16px; padding: 40px 44px; box-shadow: var(--shadow-lg); }
+.auth-logo { font-family: 'DM Serif Display', serif; font-size: 1.5rem; margin-bottom: 6px; }
 .auth-logo span { color: var(--accent-dark); font-style: italic; }
 .auth-tagline { font-size: 0.68rem; color: var(--ink-light); letter-spacing: 0.05em; margin-bottom: 32px; }
-.auth-tabs { display: flex; gap: 0; margin-bottom: 28px; border-bottom: 1.5px solid var(--border); }
-.auth-tab {
-  font-family: 'DM Mono', monospace; font-size: 0.72rem; font-weight: 500;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  padding: 9px 20px; cursor: pointer; background: none; border: none;
-  color: var(--ink-light); border-bottom: 2.5px solid transparent;
-  margin-bottom: -1.5px; transition: color 0.15s, border-color 0.15s;
-}
+.auth-tabs { display: flex; margin-bottom: 28px; border-bottom: 1.5px solid var(--border); }
+.auth-tab { font-family: 'DM Mono', monospace; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 9px 20px; cursor: pointer; background: none; border: none; color: var(--ink-light); border-bottom: 2.5px solid transparent; margin-bottom: -1.5px; transition: color 0.15s, border-color 0.15s; }
 .auth-tab.active { color: var(--ink); border-bottom-color: var(--ink); }
 .auth-field { margin-bottom: 14px; }
 .auth-field label { display: block; font-size: 0.62rem; color: var(--ink-light); margin-bottom: 5px; letter-spacing: 0.06em; text-transform: uppercase; }
-.auth-field input {
-  width: 100%; font-family: 'DM Mono', monospace; font-size: 0.8rem;
-  padding: 10px 13px; border: 1.5px solid var(--border); border-radius: 6px;
-  background: var(--bg); color: var(--ink); outline: none; transition: border-color 0.15s;
-}
+.auth-field input { width: 100%; font-family: 'DM Mono', monospace; font-size: 0.8rem; padding: 10px 13px; border: 1.5px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--ink); outline: none; transition: border-color 0.15s; }
 .auth-field input:focus { border-color: var(--ink); }
 .auth-field input::placeholder { color: var(--ink-light); opacity: 0.5; }
-.auth-btn {
-  width: 100%; font-family: 'DM Mono', monospace; font-size: 0.75rem;
-  font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
-  padding: 12px; border-radius: 6px; border: none;
-  background: var(--ink); color: var(--bg); cursor: pointer;
-  margin-top: 6px; transition: opacity 0.15s;
-}
+.auth-btn { width: 100%; font-family: 'DM Mono', monospace; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 12px; border-radius: 6px; border: none; background: var(--ink); color: var(--bg); cursor: pointer; margin-top: 6px; transition: opacity 0.15s; }
 .auth-btn:hover { opacity: 0.85; }
-.auth-btn:disabled { opacity: 0.45; cursor: not-allowed; }
-.auth-error {
-  font-size: 0.7rem; color: var(--direct); background: #fde8e8;
-  border: 1px solid #f5c6c6; border-radius: 5px;
-  padding: 8px 12px; margin-bottom: 14px; display: none;
-}
-.auth-success {
-  font-size: 0.7rem; color: #2a6e2a; background: #e8f7e8;
-  border: 1px solid #b8e0b8; border-radius: 5px;
-  padding: 8px 12px; margin-bottom: 14px; display: none;
-}
+.auth-error { font-size: 0.7rem; color: var(--direct); background: #fde8e8; border: 1px solid #f5c6c6; border-radius: 5px; padding: 8px 12px; margin-bottom: 14px; display: none; }
+.auth-success { font-size: 0.7rem; color: #2a6e2a; background: #e8f7e8; border: 1px solid #b8e0b8; border-radius: 5px; padding: 8px 12px; margin-bottom: 14px; display: none; }
 .auth-footer { font-size: 0.63rem; color: var(--ink-light); margin-top: 20px; text-align: center; }
 .auth-link { color: var(--ink); cursor: pointer; text-decoration: underline; }
 
-/* ════════════════════════════════════════
-   ADMIN PANEL
-════════════════════════════════════════ */
-#admin-screen { display: none; min-height: 100vh; background: var(--bg); }
-.admin-header {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 16px 32px; border-bottom: 1.5px solid var(--border);
-  background: var(--card-bg);
-}
-.admin-title { font-family: 'DM Serif Display', serif; font-size: 1.3rem; }
-.admin-title span { color: var(--accent-dark); font-style: italic; }
-.admin-body { padding: 32px; max-width: 900px; margin: 0 auto; }
-.admin-stats { display: flex; gap: 16px; margin-bottom: 32px; }
-.admin-stat {
-  background: var(--card-bg); border: 1.5px solid var(--border);
-  border-radius: 10px; padding: 18px 24px; flex: 1;
-}
-.admin-stat-num { font-family: 'DM Serif Display', serif; font-size: 2rem; }
-.admin-stat-label { font-size: 0.65rem; color: var(--ink-light); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 2px; }
-.admin-section-title {
-  font-size: 0.65rem; font-weight: 500; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--ink-light); margin-bottom: 14px;
-}
-.users-table { width: 100%; border-collapse: collapse; }
-.users-table th {
-  font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--ink-light); text-align: left; padding: 8px 14px;
-  border-bottom: 1.5px solid var(--border); font-weight: 500;
-}
-.users-table td {
-  font-size: 0.74rem; padding: 10px 14px;
-  border-bottom: 1px solid var(--border); vertical-align: middle;
-}
-.users-table tr:last-child td { border-bottom: none; }
-.users-table tbody tr:hover { background: rgba(26,24,20,0.025); }
-.user-delete-btn {
-  font-size: 0.6rem; padding: 3px 9px; border-radius: 4px;
-  border: 1px solid var(--border); background: none; color: var(--ink-light);
-  cursor: pointer; font-family: 'DM Mono', monospace; transition: all 0.12s;
-}
-.user-delete-btn:hover { background: #fde8e8; border-color: var(--direct); color: var(--direct); }
-.export-btn {
-  font-family: 'DM Mono', monospace; font-size: 0.68rem; font-weight: 500;
-  letter-spacing: 0.06em; text-transform: uppercase;
-  padding: 7px 15px; border-radius: 4px; border: 1.5px solid var(--border);
-  background: none; color: var(--ink-light); cursor: pointer; transition: all 0.15s;
-  margin-bottom: 16px;
-}
-.export-btn:hover { border-color: var(--ink); color: var(--ink); }
-
-/* ════════════════════════════════════════
-   MAIN APP
-════════════════════════════════════════ */
+/* ── APP SCREEN ── */
 #app-screen { display: none; flex-direction: column; min-height: 100vh; }
-
-/* HEADER */
-header {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 13px 26px; border-bottom: 1.5px solid var(--border);
-  background: var(--bg); position: sticky; top: 0; z-index: 100;
-  gap: 12px; flex-wrap: wrap;
-}
+header { display: flex; align-items: center; justify-content: space-between; padding: 13px 26px; border-bottom: 1.5px solid var(--border); background: var(--bg); position: sticky; top: 0; z-index: 100; gap: 12px; flex-wrap: wrap; }
 .logo { font-family: 'DM Serif Display', serif; font-size: 1.3rem; letter-spacing: -0.01em; white-space: nowrap; }
 .logo span { color: var(--accent-dark); font-style: italic; }
 .header-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.header-user {
-  font-size: 0.68rem; color: var(--ink-light); padding: 5px 10px;
-  border: 1px solid var(--border); border-radius: 20px;
-  white-space: nowrap;
-}
-.btn {
-  font-family: 'DM Mono', monospace; font-size: 0.7rem; font-weight: 500;
-  letter-spacing: 0.06em; text-transform: uppercase;
-  padding: 7px 15px; border-radius: 4px;
-  border: 1.5px solid var(--ink); background: transparent; color: var(--ink);
-  cursor: pointer; transition: all 0.15s; white-space: nowrap;
-}
+.header-user { font-size: 0.68rem; color: var(--ink-light); padding: 5px 10px; border: 1px solid var(--border); border-radius: 20px; white-space: nowrap; }
+.btn { font-family: 'DM Mono', monospace; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 7px 15px; border-radius: 4px; border: 1.5px solid var(--ink); background: transparent; color: var(--ink); cursor: pointer; transition: all 0.15s; white-space: nowrap; }
 .btn:hover { background: var(--ink); color: var(--bg); }
 .btn:disabled { opacity: 0.45; cursor: not-allowed; }
 .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--ink); }
@@ -177,15 +58,8 @@ header {
 .btn.ghost { border-color: var(--border); color: var(--ink-light); }
 .btn.ghost:hover { border-color: var(--ink); color: var(--ink); background: transparent; }
 .btn-icon { font-size: 0.82rem; margin-right: 4px; }
-
-/* LAYOUT */
 .app-body { display: flex; flex: 1; min-height: 0; height: calc(100vh - 55px); }
-.sidebar {
-  width: 272px; min-width: 210px;
-  border-right: 1.5px solid var(--border); padding: 18px 16px;
-  display: flex; flex-direction: column; gap: 16px;
-  background: var(--bg); overflow-y: auto;
-}
+.sidebar { width: 272px; min-width: 210px; border-right: 1.5px solid var(--border); padding: 18px 16px; display: flex; flex-direction: column; gap: 16px; background: var(--bg); overflow-y: auto; }
 .sidebar-section-title { font-size: 0.62rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 8px; }
 .canvas-wrap { flex: 1; overflow: hidden; position: relative; background: var(--bg); }
 
@@ -252,13 +126,11 @@ header {
 .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,24,20,0.55); z-index: 200; align-items: center; justify-content: center; }
 .modal-overlay.open { display: flex; }
 .modal { background: var(--bg); border-radius: 12px; width: 740px; max-width: 96vw; max-height: 90vh; overflow-y: auto; padding: 32px 36px; position: relative; box-shadow: var(--shadow-lg); border: 1.5px solid var(--border); }
-.modal-close { position: absolute; top: 15px; right: 19px; font-size: 1.2rem; cursor: pointer; color: var(--ink-light); background: none; border: none; transition: color 0.12s; }
+.modal-close { position: absolute; top: 15px; right: 19px; font-size: 1.2rem; cursor: pointer; color: var(--ink-light); background: none; border: none; }
 .modal-close:hover { color: var(--ink); }
 .modal-title { font-family: 'DM Serif Display', serif; font-size: 1.7rem; margin-bottom: 3px; }
 .modal-subtitle { font-size: 0.69rem; color: var(--ink-light); letter-spacing: 0.05em; margin-bottom: 20px; }
 .modal-actions { display: flex; gap: 8px; margin-bottom: 22px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
-
-/* REPORT CONTENT */
 .brand-info-box { background: rgba(200,230,60,0.12); border: 1px solid var(--accent-dark); border-radius: 6px; padding: 10px 14px; margin-bottom: 18px; font-size: 0.74rem; }
 .brand-info-box strong { font-family: 'DM Serif Display', serif; font-size: 1.08rem; }
 .brand-info-box .positioning { color: var(--ink-light); font-size: 0.69rem; margin-top: 2px; font-style: italic; }
@@ -278,8 +150,6 @@ header {
 .ai-loading { display: flex; align-items: center; gap: 10px; font-size: 0.73rem; color: var(--ink-light); }
 .spinner { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--border); border-top-color: var(--ink); animation: spin 0.7s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
-
-/* PRINT */
 @media print {
   body > *:not(.modal-overlay) { display: none !important; }
   .modal-overlay { display: block !important; background: none !important; position: static !important; }
@@ -287,11 +157,7 @@ header {
   .modal-close, .modal-actions { display: none !important; }
   .channel-bar-fill, .tag { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
 }
-
-/* TOAST */
 #toast { position: fixed; bottom: 26px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--ink); color: var(--bg); padding: 9px 20px; border-radius: 6px; font-size: 0.71rem; letter-spacing: 0.05em; z-index: 999; transition: transform 0.3s ease, opacity 0.3s; opacity: 0; pointer-events: none; }
-
-/* SCROLLBAR */
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
@@ -299,114 +165,39 @@ header {
 </head>
 <body>
 
-<!-- ══════════════════════════════════════
-     AUTH SCREEN
-══════════════════════════════════════ -->
+<!-- AUTH SCREEN -->
 <div id="auth-screen">
   <div class="auth-card">
     <div class="auth-logo">Communication <span>Compass</span></div>
     <div class="auth-tagline">Map your competitive communication landscape</div>
-
     <div class="auth-tabs">
       <button class="auth-tab active" id="tab-login" onclick="switchTab('login')">Sign In</button>
       <button class="auth-tab" id="tab-register" onclick="switchTab('register')">Create Account</button>
     </div>
-
-    <!-- LOGIN FORM -->
+    <!-- LOGIN -->
     <div id="form-login">
       <div class="auth-error" id="login-error"></div>
-      <div class="auth-field">
-        <label>Email</label>
-        <input type="email" id="login-email" placeholder="you@company.com" />
-      </div>
-      <div class="auth-field">
-        <label>Password</label>
-        <input type="password" id="login-password" placeholder="Your password" />
-      </div>
+      <div class="auth-field"><label>Email</label><input type="email" id="login-email" placeholder="you@company.com" /></div>
+      <div class="auth-field"><label>Password</label><input type="password" id="login-password" placeholder="Your password" /></div>
       <button class="auth-btn" onclick="doLogin()">Sign In →</button>
-      <div class="auth-footer">
-        No account? <span class="auth-link" onclick="switchTab('register')">Create one</span>
-      </div>
+      <div class="auth-footer">No account? <span class="auth-link" onclick="switchTab('register')">Create one</span></div>
     </div>
-
-    <!-- REGISTER FORM -->
+    <!-- REGISTER -->
     <div id="form-register" style="display:none">
       <div class="auth-error" id="register-error"></div>
       <div class="auth-success" id="register-success"></div>
-      <div class="auth-field">
-        <label>Full Name</label>
-        <input type="text" id="reg-name" placeholder="Jane Smith" />
-      </div>
-      <div class="auth-field">
-        <label>Email</label>
-        <input type="email" id="reg-email" placeholder="you@company.com" />
-      </div>
-      <div class="auth-field">
-        <label>Company / Organisation</label>
-        <input type="text" id="reg-company" placeholder="Acme Ltd." />
-      </div>
-      <div class="auth-field">
-        <label>Password</label>
-        <input type="password" id="reg-password" placeholder="Min. 6 characters" />
-      </div>
-      <div class="auth-field">
-        <label>Confirm Password</label>
-        <input type="password" id="reg-confirm" placeholder="Repeat password" />
-      </div>
+      <div class="auth-field"><label>Full Name</label><input type="text" id="reg-name" placeholder="Jane Smith" /></div>
+      <div class="auth-field"><label>Email</label><input type="email" id="reg-email" placeholder="you@company.com" /></div>
+      <div class="auth-field"><label>Company / Organisation</label><input type="text" id="reg-company" placeholder="Acme Ltd." /></div>
+      <div class="auth-field"><label>Password</label><input type="password" id="reg-password" placeholder="Min. 6 characters" /></div>
+      <div class="auth-field"><label>Confirm Password</label><input type="password" id="reg-confirm" placeholder="Repeat password" /></div>
       <button class="auth-btn" onclick="doRegister()">Create Account →</button>
-      <div class="auth-footer">
-        Already registered? <span class="auth-link" onclick="switchTab('login')">Sign in</span>
-      </div>
+      <div class="auth-footer">Already registered? <span class="auth-link" onclick="switchTab('login')">Sign in</span></div>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     ADMIN SCREEN
-══════════════════════════════════════ -->
-<div id="admin-screen">
-  <div class="admin-header">
-    <div class="admin-title">Compass <span>Admin</span></div>
-    <div style="display:flex;gap:8px;align-items:center;">
-      <button class="btn ghost" onclick="exportUsersCSV()">⬇ Export CSV</button>
-      <button class="btn ghost" onclick="doLogout()">Sign Out</button>
-    </div>
-  </div>
-  <div class="admin-body">
-    <div class="admin-stats">
-      <div class="admin-stat">
-        <div class="admin-stat-num" id="stat-total">0</div>
-        <div class="admin-stat-label">Total Users</div>
-      </div>
-      <div class="admin-stat">
-        <div class="admin-stat-num" id="stat-today">0</div>
-        <div class="admin-stat-label">Registered Today</div>
-      </div>
-      <div class="admin-stat">
-        <div class="admin-stat-num" id="stat-companies">0</div>
-        <div class="admin-stat-label">Companies</div>
-      </div>
-    </div>
-    <div class="admin-section-title">Registered Users</div>
-    <table class="users-table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Company</th>
-          <th>Registered</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody id="users-tbody"></tbody>
-    </table>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════
-     APP SCREEN
-══════════════════════════════════════ -->
+<!-- APP SCREEN -->
 <div id="app-screen">
   <header>
     <div class="logo">Communication <span>Compass</span></div>
@@ -418,11 +209,8 @@ header {
       <button class="btn ghost" onclick="doLogout()">Sign Out</button>
     </div>
   </header>
-
   <div class="app-body">
     <div class="sidebar">
-
-      <!-- Brand -->
       <div>
         <div class="sidebar-section-title">Your Brand</div>
         <div class="brand-panel">
@@ -433,8 +221,6 @@ header {
           <div class="brand-field"><label>Industry / Category</label><input type="text" id="brand-industry" placeholder="e.g. SaaS, FMCG, Fashion…" /></div>
         </div>
       </div>
-
-      <!-- Add Competitor -->
       <div>
         <div class="sidebar-section-title">Add Competitor</div>
         <div class="add-form">
@@ -447,8 +233,6 @@ header {
           <button class="btn primary" onclick="addCompetitor()" style="width:100%;text-align:center;">+ Add to Canvas</button>
         </div>
       </div>
-
-      <!-- Channel Palette -->
       <div>
         <div class="sidebar-section-title">Drag Channels onto Cards</div>
         <div class="chips-wrap" id="channel-palette"></div>
@@ -457,16 +241,11 @@ header {
           <button class="btn ghost" style="padding:5px 8px;" onclick="addCustomChannel()">+</button>
         </div>
       </div>
-
-      <!-- On Canvas -->
       <div>
         <div class="sidebar-section-title">On Canvas (<span id="comp-count">0</span>)</div>
         <div id="comp-list"></div>
       </div>
-
     </div>
-
-    <!-- Canvas -->
     <div class="canvas-wrap" id="canvas-wrap">
       <div id="compass">
         <svg class="compass-svg" id="compass-svg"></svg>
@@ -477,8 +256,6 @@ header {
       </div>
     </div>
   </div>
-
-  <!-- Report Modal -->
   <div class="modal-overlay" id="report-modal">
     <div class="modal">
       <button class="modal-close" onclick="closeReport()">×</button>
@@ -496,102 +273,47 @@ header {
 <div id="toast"></div>
 
 <script>
-// ════════════════════════════════════════════════════════
-// CONFIGURATION — CHANGE THESE BEFORE UPLOADING
-// ════════════════════════════════════════════════════════
-const CONFIG = {
-  // Admin credentials — CHANGE THESE
-  ADMIN_EMAIL: 'denis@mlk.by',
-  ADMIN_PASSWORD: 'Cr0090998ct',
-  // App name shown in emails / UI
-  APP_NAME: 'Communication Compass'
-};
-
-// ════════════════════════════════════════════════════════
-// STORAGE HELPERS
-// ════════════════════════════════════════════════════════
+// ── STORAGE ───────────────────────────────────────────────────────────────────
 const DB = {
-  getUsers() {
-    try { return JSON.parse(localStorage.getItem('cc_users') || '[]'); } catch { return []; }
-  },
-  saveUsers(users) {
-    localStorage.setItem('cc_users', JSON.stringify(users));
-  },
-  getSession() {
-    try { return JSON.parse(localStorage.getItem('cc_session') || 'null'); } catch { return null; }
-  },
-  saveSession(user) {
-    localStorage.setItem('cc_session', JSON.stringify(user));
-  },
-  clearSession() {
-    localStorage.removeItem('cc_session');
-  },
-  findUser(email) {
-    return this.getUsers().find(u => u.email.toLowerCase() === email.toLowerCase());
-  },
-  addUser(user) {
-    const users = this.getUsers();
-    users.push(user);
-    this.saveUsers(users);
-  },
-  deleteUser(email) {
-    const users = this.getUsers().filter(u => u.email.toLowerCase() !== email.toLowerCase());
-    this.saveUsers(users);
-  }
+  getUsers()      { try { return JSON.parse(localStorage.getItem('cc_users')||'[]'); } catch { return []; } },
+  saveUsers(u)    { localStorage.setItem('cc_users', JSON.stringify(u)); },
+  getSession()    { try { return JSON.parse(localStorage.getItem('cc_session')||'null'); } catch { return null; } },
+  saveSession(u)  { localStorage.setItem('cc_session', JSON.stringify(u)); },
+  clearSession()  { localStorage.removeItem('cc_session'); },
+  findUser(email) { return this.getUsers().find(u => u.email.toLowerCase()===email.toLowerCase()); },
+  addUser(user)   { const u=this.getUsers(); u.push(user); this.saveUsers(u); }
 };
 
-// Simple password hash (XOR obfuscation — not cryptographic, but obscures plaintext)
 function hashPassword(pw) {
-  let h = 0;
-  for (let i = 0; i < pw.length; i++) h = Math.imul(31, h) + pw.charCodeAt(i) | 0;
-  return 'h_' + Math.abs(h).toString(36) + '_' + pw.length;
+  let h=0;
+  for(let i=0;i<pw.length;i++) h=Math.imul(31,h)+pw.charCodeAt(i)|0;
+  return 'h_'+Math.abs(h).toString(36)+'_'+pw.length;
 }
 
-// ════════════════════════════════════════════════════════
-// AUTH FLOW
-// ════════════════════════════════════════════════════════
+// ── AUTH ──────────────────────────────────────────────────────────────────────
 function switchTab(tab) {
   document.getElementById('tab-login').classList.toggle('active', tab==='login');
   document.getElementById('tab-register').classList.toggle('active', tab==='register');
-  document.getElementById('form-login').style.display = tab==='login' ? '' : 'none';
-  document.getElementById('form-register').style.display = tab==='register' ? '' : 'none';
+  document.getElementById('form-login').style.display   = tab==='login'?'':'none';
+  document.getElementById('form-register').style.display = tab==='register'?'':'none';
   clearAuthMessages();
 }
-
 function clearAuthMessages() {
-  ['login-error','register-error','register-success'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) { el.style.display='none'; el.textContent=''; }
+  ['login-error','register-error','register-success'].forEach(id=>{
+    const el=document.getElementById(id); if(el){el.style.display='none';el.textContent='';}
   });
 }
-
-function showError(id, msg) {
-  const el = document.getElementById(id);
-  el.textContent = msg; el.style.display = 'block';
-}
-function showSuccess(id, msg) {
-  const el = document.getElementById(id);
-  el.textContent = msg; el.style.display = 'block';
-}
+function showError(id,msg)   { const el=document.getElementById(id); el.textContent=msg; el.style.display='block'; }
+function showSuccess(id,msg) { const el=document.getElementById(id); el.textContent=msg; el.style.display='block'; }
 
 function doLogin() {
   clearAuthMessages();
-  const email = document.getElementById('login-email').value.trim();
+  const email    = document.getElementById('login-email').value.trim();
   const password = document.getElementById('login-password').value;
-
-  if (!email || !password) { showError('login-error', 'Please enter your email and password.'); return; }
-
-  // Admin check
-  if (email.toLowerCase() === CONFIG.ADMIN_EMAIL.toLowerCase() && password === CONFIG.ADMIN_PASSWORD) {
-    DB.saveSession({ email, name: 'Admin', role: 'admin' });
-    showAdminScreen();
-    return;
-  }
-
+  if(!email||!password){ showError('login-error','Please enter your email and password.'); return; }
   const user = DB.findUser(email);
-  if (!user) { showError('login-error', 'No account found with that email. Please register first.'); return; }
-  if (user.passwordHash !== hashPassword(password)) { showError('login-error', 'Incorrect password. Please try again.'); return; }
-
+  if(!user)                                    { showError('login-error','No account found with that email.'); return; }
+  if(user.passwordHash !== hashPassword(password)) { showError('login-error','Incorrect password.'); return; }
   DB.saveSession(user);
   showAppScreen(user);
 }
@@ -603,205 +325,85 @@ function doRegister() {
   const company = document.getElementById('reg-company').value.trim();
   const pw      = document.getElementById('reg-password').value;
   const pw2     = document.getElementById('reg-confirm').value;
-
-  if (!name)    { showError('register-error', 'Please enter your name.'); return; }
-  if (!email || !email.includes('@')) { showError('register-error', 'Please enter a valid email address.'); return; }
-  if (!company) { showError('register-error', 'Please enter your company or organisation.'); return; }
-  if (pw.length < 6) { showError('register-error', 'Password must be at least 6 characters.'); return; }
-  if (pw !== pw2)    { showError('register-error', 'Passwords do not match.'); return; }
-
-  if (DB.findUser(email)) { showError('register-error', 'An account with this email already exists. Please sign in.'); return; }
-
-  const user = {
-    name, email, company,
-    passwordHash: hashPassword(pw),
-    registeredAt: new Date().toISOString(),
-    role: 'user'
-  };
-  DB.addUser(user);
-
-  // Clear form
-  ['reg-name','reg-email','reg-company','reg-password','reg-confirm'].forEach(id => {
-    document.getElementById(id).value = '';
-  });
-
-  showSuccess('register-success', `Welcome, ${name}! Your account has been created. You can now sign in.`);
-  setTimeout(() => switchTab('login'), 1800);
+  if(!name)                        { showError('register-error','Please enter your name.'); return; }
+  if(!email||!email.includes('@')) { showError('register-error','Please enter a valid email.'); return; }
+  if(!company)                     { showError('register-error','Please enter your company.'); return; }
+  if(pw.length<6)                  { showError('register-error','Password must be at least 6 characters.'); return; }
+  if(pw!==pw2)                     { showError('register-error','Passwords do not match.'); return; }
+  if(DB.findUser(email))           { showError('register-error','An account with this email already exists.'); return; }
+  DB.addUser({ name, email, company, passwordHash: hashPassword(pw), registeredAt: new Date().toISOString(), role:'user' });
+  ['reg-name','reg-email','reg-company','reg-password','reg-confirm'].forEach(id=>{ document.getElementById(id).value=''; });
+  showSuccess('register-success',`Welcome, ${name}! Account created. You can now sign in.`);
+  setTimeout(()=>switchTab('login'), 1800);
 }
 
 function doLogout() {
   DB.clearSession();
-  // Reset app state
-  competitors = []; channels = [...DEFAULT_CHANNELS];
-  document.getElementById('app-screen').style.display = 'none';
-  document.getElementById('admin-screen').style.display = 'none';
-  document.getElementById('auth-screen').style.display = 'flex';
+  competitors=[]; channels=[...DEFAULT_CHANNELS]; appInited=false;
+  document.getElementById('app-screen').style.display='none';
+  document.getElementById('auth-screen').style.display='flex';
   switchTab('login');
 }
 
-// ════════════════════════════════════════════════════════
-// SCREEN ROUTING
-// ════════════════════════════════════════════════════════
 function showAppScreen(user) {
-  document.getElementById('auth-screen').style.display = 'none';
-  document.getElementById('admin-screen').style.display = 'none';
-  document.getElementById('app-screen').style.display = 'flex';
-  document.getElementById('header-user').textContent = `${user.name} · ${user.company || user.email}`;
-  setTimeout(() => { initApp(); }, 50);
+  document.getElementById('auth-screen').style.display='none';
+  document.getElementById('app-screen').style.display='flex';
+  document.getElementById('header-user').textContent=`${user.name} · ${user.company||user.email}`;
+  setTimeout(()=>initApp(), 50);
 }
 
-function showAdminScreen() {
-  document.getElementById('auth-screen').style.display = 'none';
-  document.getElementById('app-screen').style.display = 'none';
-  document.getElementById('admin-screen').style.display = 'block';
-  renderAdminPanel();
-}
-
-// ════════════════════════════════════════════════════════
-// ADMIN PANEL
-// ════════════════════════════════════════════════════════
-function renderAdminPanel() {
-  const users = DB.getUsers();
-  const today = new Date().toDateString();
-  const todayCount = users.filter(u => new Date(u.registeredAt).toDateString() === today).length;
-  const companies = new Set(users.map(u => u.company).filter(Boolean)).size;
-
-  document.getElementById('stat-total').textContent = users.length;
-  document.getElementById('stat-today').textContent = todayCount;
-  document.getElementById('stat-companies').textContent = companies;
-
-  const tbody = document.getElementById('users-tbody');
-  tbody.innerHTML = '';
-  if (!users.length) {
-    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--ink-light);font-size:0.72rem;padding:24px">No users registered yet.</td></tr>';
-    return;
-  }
-  [...users].reverse().forEach((u, i) => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td style="color:var(--ink-light)">${users.length - i}</td>
-      <td>${escHtml(u.name)}</td>
-      <td>${escHtml(u.email)}</td>
-      <td>${escHtml(u.company||'—')}</td>
-      <td style="color:var(--ink-light)">${new Date(u.registeredAt).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}</td>
-      <td><button class="user-delete-btn" onclick="adminDeleteUser('${escHtml(u.email)}')">Remove</button></td>
-    `;
-    tbody.appendChild(tr);
-  });
-}
-
-function adminDeleteUser(email) {
-  if (!confirm(`Remove user ${email}? This cannot be undone.`)) return;
-  DB.deleteUser(email);
-  renderAdminPanel();
-}
-
-function exportUsersCSV() {
-  const users = DB.getUsers();
-  if (!users.length) { alert('No users to export.'); return; }
-  const header = 'Name,Email,Company,Registered';
-  const rows = users.map(u =>
-    [u.name, u.email, u.company||'', new Date(u.registeredAt).toLocaleDateString('en-GB')]
-    .map(v => `"${String(v).replace(/"/g,'""')}"`)
-    .join(',')
-  );
-  const csv = [header, ...rows].join('\n');
-  const link = document.createElement('a');
-  link.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
-  link.download = `compass-users-${dateStamp()}.csv`;
-  link.click();
-}
-
-// ════════════════════════════════════════════════════════
-// APP INIT — check session on load
-// ════════════════════════════════════════════════════════
 window.addEventListener('load', () => {
   const session = DB.getSession();
-  if (session) {
-    if (session.role === 'admin') showAdminScreen();
-    else showAppScreen(session);
-  }
-  // Enter key on auth fields
-  ['login-email','login-password'].forEach(id => {
-    document.getElementById(id).addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
+  if(session && session.role!=='admin') showAppScreen(session);
+  ['login-email','login-password'].forEach(id=>{
+    document.getElementById(id).addEventListener('keydown',e=>{ if(e.key==='Enter') doLogin(); });
   });
-  ['reg-name','reg-email','reg-company','reg-password','reg-confirm'].forEach(id => {
-    document.getElementById(id).addEventListener('keydown', e => { if(e.key==='Enter') doRegister(); });
+  ['reg-name','reg-email','reg-company','reg-password','reg-confirm'].forEach(id=>{
+    document.getElementById(id).addEventListener('keydown',e=>{ if(e.key==='Enter') doRegister(); });
   });
 });
 
-// ════════════════════════════════════════════════════════
-// COMPASS APP
-// ════════════════════════════════════════════════════════
-const DEFAULT_CHANNELS = [
-  'Instagram','TikTok','Facebook','LinkedIn','Twitter/X',
-  'YouTube','Email','SEO/Blog','Podcast','PR/Press',
-  'OOH/Outdoor','Events','Influencers','Paid Search','Display Ads',
-  'WhatsApp','Pinterest','Reddit','SMS','Webinars'
-];
+// ── COMPASS APP ───────────────────────────────────────────────────────────────
+const DEFAULT_CHANNELS = ['Instagram','TikTok','Facebook','LinkedIn','Twitter/X','YouTube','Email','SEO/Blog','Podcast','PR/Press','OOH/Outdoor','Events','Influencers','Paid Search','Display Ads','WhatsApp','Pinterest','Reddit','SMS','Webinars'];
 const TYPE_COLORS = { direct:'#e63c3c', indirect:'#3c7be6', benchmark:'#e6963c' };
-
-let competitors = [];
-let channels = [...DEFAULT_CHANNELS];
-let draggedChannel = null;
-let draggedCard = null, dragOffsetX = 0, dragOffsetY = 0;
-let nextId = 1;
-let appInited = false;
+let competitors=[], channels=[...DEFAULT_CHANNELS];
+let draggedChannel=null, draggedCard=null, dragOffsetX=0, dragOffsetY=0, nextId=1, appInited=false;
 
 function initApp() {
-  if (appInited) return;
-  appInited = true;
-  renderChannelPalette();
-  drawCompassSVG();
-  renderBrandCenter();
-  window.addEventListener('resize', () => { drawCompassSVG(); repositionBrandCenter(); });
+  if(appInited) return; appInited=true;
+  renderChannelPalette(); drawCompassSVG(); renderBrandCenter();
+  window.addEventListener('resize',()=>{ drawCompassSVG(); repositionBrandCenter(); });
 }
 
-// BRAND
 function getBrandData() {
-  return {
-    name: document.getElementById('brand-name').value.trim() || 'Brand',
-    positioning: document.getElementById('brand-positioning').value.trim(),
-    audience: document.getElementById('brand-audience').value.trim(),
-    industry: document.getElementById('brand-industry').value.trim(),
-  };
+  return { name:document.getElementById('brand-name').value.trim()||'Brand', positioning:document.getElementById('brand-positioning').value.trim(), audience:document.getElementById('brand-audience').value.trim(), industry:document.getElementById('brand-industry').value.trim() };
 }
 function updateBrandCenter() {
-  const el = document.getElementById('brand-center-el');
-  if (!el) return;
-  const { name, positioning } = getBrandData();
-  el.querySelector('.brand-center-name').textContent = name;
-  const posEl = el.querySelector('.brand-center-positioning');
-  if (positioning) { posEl.textContent = positioning; posEl.style.display = 'block'; }
-  else posEl.style.display = 'none';
+  const el=document.getElementById('brand-center-el'); if(!el) return;
+  const {name,positioning}=getBrandData();
+  el.querySelector('.brand-center-name').textContent=name;
+  const posEl=el.querySelector('.brand-center-positioning');
+  if(positioning){posEl.textContent=positioning;posEl.style.display='block';}else posEl.style.display='none';
 }
 function renderBrandCenter() {
-  const existing = document.getElementById('brand-center-el');
-  if (existing) existing.remove();
-  const wrap = document.getElementById('canvas-wrap');
-  const W = wrap.clientWidth, H = wrap.clientHeight;
-  const el = document.createElement('div');
-  el.id = 'brand-center-el'; el.className = 'brand-center';
-  el.style.left = (W/2)+'px'; el.style.top = (H/2)+'px';
-  el.innerHTML = `<div class="brand-center-name">Brand</div><div class="brand-center-positioning" style="display:none"></div><div class="brand-center-hint">essence · mission</div>`;
+  const ex=document.getElementById('brand-center-el'); if(ex) ex.remove();
+  const wrap=document.getElementById('canvas-wrap');
+  const el=document.createElement('div'); el.id='brand-center-el'; el.className='brand-center';
+  el.style.left=(wrap.clientWidth/2)+'px'; el.style.top=(wrap.clientHeight/2)+'px';
+  el.innerHTML=`<div class="brand-center-name">Brand</div><div class="brand-center-positioning" style="display:none"></div><div class="brand-center-hint">essence · mission</div>`;
   document.getElementById('compass').appendChild(el);
 }
 function repositionBrandCenter() {
-  const el = document.getElementById('brand-center-el');
-  if (!el) return;
-  const wrap = document.getElementById('canvas-wrap');
-  el.style.left = (wrap.clientWidth/2)+'px'; el.style.top = (wrap.clientHeight/2)+'px';
+  const el=document.getElementById('brand-center-el'); if(!el) return;
+  const wrap=document.getElementById('canvas-wrap');
+  el.style.left=(wrap.clientWidth/2)+'px'; el.style.top=(wrap.clientHeight/2)+'px';
 }
-
-// SVG
 function drawCompassSVG() {
-  const svg = document.getElementById('compass-svg');
-  const wrap = document.getElementById('canvas-wrap');
-  const W = wrap.clientWidth, H = wrap.clientHeight;
-  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
-  const cx=W/2, cy=H/2, rx=W*0.44, ry=H*0.42;
-  svg.innerHTML = `
-    <rect x="${cx-rx}" y="${cy-ry}" width="${rx*2}" height="${ry*2}" fill="none" stroke="#d4cfc6" stroke-width="1.2" rx="3"/>
+  const svg=document.getElementById('compass-svg'), wrap=document.getElementById('canvas-wrap');
+  const W=wrap.clientWidth, H=wrap.clientHeight;
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  const cx=W/2,cy=H/2,rx=W*0.44,ry=H*0.42;
+  svg.innerHTML=`<rect x="${cx-rx}" y="${cy-ry}" width="${rx*2}" height="${ry*2}" fill="none" stroke="#d4cfc6" stroke-width="1.2" rx="3"/>
     <line x1="${cx-rx}" y1="${cy-ry}" x2="${cx+rx}" y2="${cy+ry}" stroke="#d4cfc6" stroke-width="0.7"/>
     <line x1="${cx+rx}" y1="${cy-ry}" x2="${cx-rx}" y2="${cy+ry}" stroke="#d4cfc6" stroke-width="0.7"/>
     <line x1="${cx}" y1="${cy-ry}" x2="${cx}" y2="${cy+ry}" stroke="#d4cfc6" stroke-width="0.7"/>
@@ -812,207 +414,60 @@ function drawCompassSVG() {
     <circle cx="${cx}" cy="${cy}" r="${Math.min(rx,ry)*0.38}" fill="rgba(200,230,60,0.14)" stroke="#a8c420" stroke-width="1.2"/>
     <text x="${cx+rx*0.52}" y="${cy-ry+14}" font-size="8" fill="#c0bbb4" font-family="DM Mono,monospace" letter-spacing="1.5" text-anchor="middle">DIRECT COMPETITORS</text>
     <text x="${cx-rx*0.52}" y="${cy-ry+14}" font-size="8" fill="#c0bbb4" font-family="DM Mono,monospace" letter-spacing="1.5" text-anchor="middle">INDIRECT COMPETITORS</text>
-    <text x="${cx-rx*0.52}" y="${cy+ry-6}" font-size="8" fill="#c0bbb4" font-family="DM Mono,monospace" letter-spacing="1.5" text-anchor="middle">BENCHMARKS</text>
-  `;
+    <text x="${cx-rx*0.52}" y="${cy+ry-6}" font-size="8" fill="#c0bbb4" font-family="DM Mono,monospace" letter-spacing="1.5" text-anchor="middle">BENCHMARKS</text>`;
 }
-
-// CHANNELS
 function renderChannelPalette() {
-  const wrap = document.getElementById('channel-palette');
-  wrap.innerHTML = '';
-  channels.forEach(ch => {
-    const chip = document.createElement('div');
-    chip.className = 'channel-chip'; chip.textContent = ch; chip.draggable = true;
-    chip.addEventListener('dragstart', e => { draggedChannel=ch; chip.classList.add('dragging'); e.dataTransfer.effectAllowed='copy'; });
-    chip.addEventListener('dragend', () => chip.classList.remove('dragging'));
-    wrap.appendChild(chip);
-  });
+  const wrap=document.getElementById('channel-palette'); wrap.innerHTML='';
+  channels.forEach(ch=>{ const chip=document.createElement('div'); chip.className='channel-chip'; chip.textContent=ch; chip.draggable=true;
+    chip.addEventListener('dragstart',e=>{draggedChannel=ch;chip.classList.add('dragging');e.dataTransfer.effectAllowed='copy';});
+    chip.addEventListener('dragend',()=>chip.classList.remove('dragging')); wrap.appendChild(chip); });
 }
 function addCustomChannel() {
-  const inp = document.getElementById('custom-channel-input');
-  const val = inp.value.trim();
-  if (!val || channels.includes(val)) return;
-  channels.push(val); inp.value = ''; renderChannelPalette();
+  const inp=document.getElementById('custom-channel-input'), val=inp.value.trim();
+  if(!val||channels.includes(val)) return; channels.push(val); inp.value=''; renderChannelPalette();
 }
-
-// COMPETITORS
 function addCompetitor() {
-  const name = document.getElementById('comp-name-input').value.trim();
-  const type = document.getElementById('comp-type-select').value;
-  if (!name) { document.getElementById('comp-name-input').focus(); return; }
-  const wrap = document.getElementById('canvas-wrap');
-  const W=wrap.clientWidth, H=wrap.clientHeight;
+  const name=document.getElementById('comp-name-input').value.trim(), type=document.getElementById('comp-type-select').value;
+  if(!name){ document.getElementById('comp-name-input').focus(); return; }
+  const wrap=document.getElementById('canvas-wrap'), W=wrap.clientWidth, H=wrap.clientHeight;
   const j=()=>(Math.random()-0.5)*90;
   const pos={direct:{x:W*0.68+j(),y:H*0.26+j()},indirect:{x:W*0.22+j(),y:H*0.26+j()},benchmark:{x:W*0.22+j(),y:H*0.72+j()}}[type];
   const comp={id:nextId++,name,type,channels:[],x:pos.x,y:pos.y};
-  competitors.push(comp);
-  document.getElementById('comp-name-input').value='';
+  competitors.push(comp); document.getElementById('comp-name-input').value='';
   renderCard(comp); updateSidebar(); updateEmptyHint();
 }
 function renderCard(comp) {
-  const existing=document.getElementById('card-'+comp.id); if(existing) existing.remove();
-  const compass=document.getElementById('compass');
-  const card=document.createElement('div');
-  card.className='comp-card'; card.id='card-'+comp.id;
-  card.style.left=comp.x+'px'; card.style.top=comp.y+'px';
-  const color=TYPE_COLORS[comp.type];
-  const typeLabel={direct:'Direct',indirect:'Indirect',benchmark:'Benchmark'}[comp.type];
-  card.innerHTML=`
-    <div class="comp-card-header">
-      <div class="comp-dot" style="background:${color}"></div>
-      <div class="comp-name">${escHtml(comp.name)}</div>
-      <div class="comp-delete" onclick="deleteComp(${comp.id})">×</div>
-    </div>
-    <div class="comp-type-label">${typeLabel}</div>
-    <div class="comp-channels" id="channels-${comp.id}"></div>
-    <div class="comp-drop-zone" id="dropzone-${comp.id}">Drop channel here</div>
-  `;
-  card.addEventListener('mousedown', e => {
-    if(e.target.classList.contains('comp-delete')||e.target.classList.contains('comp-channel-tag')) return;
-    draggedCard=comp;
-    const rect=card.getBoundingClientRect();
-    dragOffsetX=e.clientX-rect.left; dragOffsetY=e.clientY-rect.top;
-    card.style.zIndex=50; e.preventDefault();
-  });
+  const ex=document.getElementById('card-'+comp.id); if(ex) ex.remove();
+  const compass=document.getElementById('compass'), card=document.createElement('div');
+  card.className='comp-card'; card.id='card-'+comp.id; card.style.left=comp.x+'px'; card.style.top=comp.y+'px';
+  const color=TYPE_COLORS[comp.type], typeLabel={direct:'Direct',indirect:'Indirect',benchmark:'Benchmark'}[comp.type];
+  card.innerHTML=`<div class="comp-card-header"><div class="comp-dot" style="background:${color}"></div><div class="comp-name">${escHtml(comp.name)}</div><div class="comp-delete" onclick="deleteComp(${comp.id})">×</div></div><div class="comp-type-label">${typeLabel}</div><div class="comp-channels" id="channels-${comp.id}"></div><div class="comp-drop-zone" id="dropzone-${comp.id}">Drop channel here</div>`;
+  card.addEventListener('mousedown',e=>{ if(e.target.classList.contains('comp-delete')||e.target.classList.contains('comp-channel-tag')) return; draggedCard=comp; const rect=card.getBoundingClientRect(); dragOffsetX=e.clientX-rect.left; dragOffsetY=e.clientY-rect.top; card.style.zIndex=50; e.preventDefault(); });
   const dz=card.querySelector('.comp-drop-zone');
   dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('dragover');});
   dz.addEventListener('dragleave',()=>dz.classList.remove('dragover'));
-  dz.addEventListener('drop',e=>{
-    e.preventDefault(); dz.classList.remove('dragover');
-    if(draggedChannel&&!comp.channels.includes(draggedChannel)){comp.channels.push(draggedChannel);renderCardChannels(comp);updateSidebar();}
-    draggedChannel=null;
-  });
+  dz.addEventListener('drop',e=>{ e.preventDefault(); dz.classList.remove('dragover'); if(draggedChannel&&!comp.channels.includes(draggedChannel)){comp.channels.push(draggedChannel);renderCardChannels(comp);updateSidebar();} draggedChannel=null; });
   compass.appendChild(card); renderCardChannels(comp);
 }
 function renderCardChannels(comp) {
-  const wrap=document.getElementById('channels-'+comp.id); if(!wrap) return;
-  wrap.innerHTML='';
-  comp.channels.forEach(ch=>{
-    const tag=document.createElement('div');
-    tag.className='comp-channel-tag'; tag.textContent=ch; tag.title='Click to remove';
-    tag.onclick=()=>{comp.channels=comp.channels.filter(c=>c!==ch);renderCardChannels(comp);updateSidebar();};
-    wrap.appendChild(tag);
-  });
+  const wrap=document.getElementById('channels-'+comp.id); if(!wrap) return; wrap.innerHTML='';
+  comp.channels.forEach(ch=>{ const tag=document.createElement('div'); tag.className='comp-channel-tag'; tag.textContent=ch; tag.title='Click to remove'; tag.onclick=()=>{comp.channels=comp.channels.filter(c=>c!==ch);renderCardChannels(comp);updateSidebar();}; wrap.appendChild(tag); });
 }
-document.addEventListener('mousemove',e=>{
-  if(!draggedCard) return;
-  const rect=document.getElementById('compass').getBoundingClientRect();
-  const x=e.clientX-rect.left-dragOffsetX, y=e.clientY-rect.top-dragOffsetY;
-  draggedCard.x=x; draggedCard.y=y;
-  const card=document.getElementById('card-'+draggedCard.id);
-  if(card){card.style.left=x+'px';card.style.top=y+'px';}
-});
-document.addEventListener('mouseup',()=>{
-  if(draggedCard){const card=document.getElementById('card-'+draggedCard.id);if(card) card.style.zIndex=10;draggedCard=null;}
-});
-function deleteComp(id){
-  competitors=competitors.filter(c=>c.id!==id);
-  const el=document.getElementById('card-'+id);if(el) el.remove();
-  updateSidebar();updateEmptyHint();
-}
-function clearAll(){
-  if(competitors.length&&!confirm('Clear all competitors from the canvas?')) return;
-  competitors.forEach(c=>{const el=document.getElementById('card-'+c.id);if(el)el.remove();});
-  competitors=[];updateSidebar();updateEmptyHint();
-}
-function updateSidebar(){
-  document.getElementById('comp-count').textContent=competitors.length;
-  const list=document.getElementById('comp-list'); list.innerHTML='';
-  competitors.forEach(c=>{
-    const item=document.createElement('div'); item.className='comp-list-item';
-    item.innerHTML=`<div class="comp-list-dot" style="background:${TYPE_COLORS[c.type]}"></div><div class="comp-list-name">${escHtml(c.name)}</div><div class="comp-list-count">${c.channels.length} ch.</div>`;
-    list.appendChild(item);
-  });
-}
-function updateEmptyHint(){
-  document.getElementById('empty-hint').style.display=competitors.length?'none':'block';
-}
-
-// SAVE MAP IMAGE
-async function saveMapAsImage(){
-  const btn=document.getElementById('btn-save-img');
-  btn.disabled=true;btn.innerHTML='⏳ Capturing…';
-  try{
-    const canvas=await html2canvas(document.getElementById('canvas-wrap'),{backgroundColor:'#f5f2eb',scale:2,useCORS:true,logging:false});
-    const link=document.createElement('a');
-    const brand=document.getElementById('brand-name').value.trim()||'compass';
-    link.download=`comm-compass-${brand.replace(/\s+/g,'-').toLowerCase()}-${dateStamp()}.png`;
-    link.href=canvas.toDataURL('image/png'); link.click();
-    showToast('🖼 Map saved as PNG');
-  }catch(err){showToast('Could not capture — try again');}
-  finally{btn.disabled=false;btn.innerHTML='<span class="btn-icon">🖼</span> Save Map';}
-}
-
-// GENERATE REPORT
-async function generateReport(){
-  if(!competitors.length){showToast('Add at least one competitor first');return;}
-  document.getElementById('report-modal').classList.add('open');
-  const channelCount={};
-  competitors.forEach(c=>c.channels.forEach(ch=>{channelCount[ch]=(channelCount[ch]||0)+1;}));
-  const total=competitors.length;
-  const sorted=Object.entries(channelCount).sort((a,b)=>b[1]-a[1]);
-  const saturated=sorted.filter(([,n])=>n/total>=0.6).map(([ch])=>ch);
-  const opportunities=channels.filter(ch=>!channelCount[ch]);
-  const recommended=sorted.filter(([,n])=>n/total>0&&n/total<0.6).map(([ch])=>ch).slice(0,5);
-  const brand=getBrandData();
-  document.getElementById('report-subtitle').textContent=`${total} competitor${total>1?'s':''} analysed · ${Object.keys(channelCount).length} channels mapped · ${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}`;
-  let html='';
-  if(brand.name!=='Brand'||brand.positioning||brand.audience||brand.industry){
-    html+=`<div class="brand-info-box"><strong>${escHtml(brand.name)}</strong>${brand.positioning?`<div class="positioning">"${escHtml(brand.positioning)}"</div>`:''} ${brand.audience?`<div style="font-size:0.67rem;color:var(--ink-light);margin-top:3px;">Audience: ${escHtml(brand.audience)}</div>`:''} ${brand.industry?`<div style="font-size:0.67rem;color:var(--ink-light);">Industry: ${escHtml(brand.industry)}</div>`:''}</div>`;
-  }
-  html+=`<div class="report-section"><div class="report-section-title">Channel Frequency Ranking</div>`;
-  if(!sorted.length) html+=`<p style="font-size:0.73rem;color:var(--ink-light)">No channels added yet.</p>`;
-  else sorted.forEach(([ch,n])=>{const pct=Math.round(n/total*100);const col=pct>=60?'#e63c3c':pct>=30?'#e6963c':'#5cb85c';html+=`<div class="channel-bar-row"><div class="channel-bar-name">${escHtml(ch)}</div><div class="channel-bar-track"><div class="channel-bar-fill" style="width:${pct}%;background:${col}"></div></div><div class="channel-bar-count">${n}/${total}</div></div>`;});
-  html+=`</div>`;
-  html+=`<div class="report-section"><div class="report-section-title">Oversaturated Channels (60%+)</div><div class="tag-list">`;
-  if(saturated.length) saturated.forEach(ch=>{html+=`<div class="tag saturated">${escHtml(ch)}</div>`;});
-  else html+=`<span style="font-size:0.71rem;color:var(--ink-light)">No channel at 60% saturation yet.</span>`;
-  html+=`</div></div>`;
-  html+=`<div class="report-section"><div class="report-section-title">Untapped Opportunities</div><div class="tag-list">`;
-  if(opportunities.length) opportunities.slice(0,12).forEach(ch=>{html+=`<div class="tag opportunity">${escHtml(ch)}</div>`;});
-  else html+=`<span style="font-size:0.71rem;color:var(--ink-light)">All tracked channels used by at least one competitor.</span>`;
-  html+=`</div></div>`;
-  html+=`<div class="report-section"><div class="report-section-title">Recommended for ${escHtml(brand.name)}</div><div class="tag-list">`;
-  if(recommended.length) recommended.forEach(ch=>{html+=`<div class="tag recommended">${escHtml(ch)}</div>`;});
-  else html+=`<span style="font-size:0.71rem;color:var(--ink-light)">Add more competitors with channels for recommendations.</span>`;
-  html+=`</div></div>`;
-  html+=`<div class="report-section"><div class="report-section-title">AI Strategic Insight</div><div id="ai-insight"><div class="ai-loading"><div class="spinner"></div> Generating strategic analysis…</div></div></div>`;
-  document.getElementById('report-body').innerHTML=html;
-  try{
-    const resp=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:buildAIPrompt(sorted,saturated,opportunities,recommended,total,brand)}]})});
-    const data=await resp.json();
-    const text=data.content?.map(b=>b.text||'').join('')||'Unable to generate insight.';
-    document.getElementById('ai-insight').innerHTML=`<div class="ai-text">${escHtml(text)}</div>`;
-  }catch(e){document.getElementById('ai-insight').innerHTML=`<div class="ai-text" style="color:var(--ink-light)">AI analysis unavailable.</div>`;}
-}
-function buildAIPrompt(sorted,saturated,opportunities,recommended,total,brand){
-  const compSummary=competitors.map(c=>`- ${c.name} (${c.type}): ${c.channels.join(', ')||'no channels listed'}`).join('\n');
-  const brandCtx=[brand.name!=='Brand'?`Brand: ${brand.name}`:'',brand.positioning?`Positioning: "${brand.positioning}"`:'',brand.audience?`Audience: ${brand.audience}`:'',brand.industry?`Industry: ${brand.industry}`:''].filter(Boolean).join('\n');
-  return `You are a strategic communications consultant. Write a concise strategic report (4–6 paragraphs, plain prose, no bullets, no markdown).\n\n${brandCtx?`BRAND:\n${brandCtx}\n\n`:''}COMPETITORS (${total}):\n${compSummary}\n\nDATA:\nFrequency: ${sorted.map(([ch,n])=>`${ch}(${n}/${total})`).join(', ')}\nOversaturated: ${saturated.join(', ')||'none'}\nUntapped: ${opportunities.slice(0,8).join(', ')||'none'}\nRecommended: ${recommended.join(', ')||'none'}\n\nCover: (1) landscape norms, (2) risks of saturated channels, (3) whitespace opportunities, (4) recommended mix. Sharp and actionable.`;
-}
-function exportReportPDF(){
-  const modal=document.getElementById('report-modal');
-  const actions=modal.querySelector('.modal-actions');
-  const closeBtn=modal.querySelector('.modal-close');
-  actions.style.visibility='hidden'; closeBtn.style.visibility='hidden';
-  const origTitle=document.title;
-  const brand=document.getElementById('brand-name').value.trim()||'Brand';
-  document.title=`Communication Compass Report — ${brand}`;
-  window.print();
-  setTimeout(()=>{actions.style.visibility='';closeBtn.style.visibility='';document.title=origTitle;},800);
-}
+document.addEventListener('mousemove',e=>{ if(!draggedCard) return; const rect=document.getElementById('compass').getBoundingClientRect(); const x=e.clientX-rect.left-dragOffsetX,y=e.clientY-rect.top-dragOffsetY; draggedCard.x=x;draggedCard.y=y; const card=document.getElementById('card-'+draggedCard.id); if(card){card.style.left=x+'px';card.style.top=y+'px';} });
+document.addEventListener('mouseup',()=>{ if(draggedCard){const card=document.getElementById('card-'+draggedCard.id);if(card)card.style.zIndex=10;draggedCard=null;} });
+function deleteComp(id){ competitors=competitors.filter(c=>c.id!==id); const el=document.getElementById('card-'+id); if(el)el.remove(); updateSidebar();updateEmptyHint(); }
+function clearAll(){ if(competitors.length&&!confirm('Clear all competitors from the canvas?')) return; competitors.forEach(c=>{const el=document.getElementById('card-'+c.id);if(el)el.remove();}); competitors=[];updateSidebar();updateEmptyHint(); }
+function updateSidebar(){ document.getElementById('comp-count').textContent=competitors.length; const list=document.getElementById('comp-list'); list.innerHTML=''; competitors.forEach(c=>{const item=document.createElement('div');item.className='comp-list-item';item.innerHTML=`<div class="comp-list-dot" style="background:${TYPE_COLORS[c.type]}"></div><div class="comp-list-name">${escHtml(c.name)}</div><div class="comp-list-count">${c.channels.length} ch.</div>`;list.appendChild(item);}); }
+function updateEmptyHint(){ document.getElementById('empty-hint').style.display=competitors.length?'none':'block'; }
+async function saveMapAsImage(){ const btn=document.getElementById('btn-save-img'); btn.disabled=true;btn.innerHTML='⏳ Capturing…'; try{ const canvas=await html2canvas(document.getElementById('canvas-wrap'),{backgroundColor:'#f5f2eb',scale:2,useCORS:true,logging:false}); const link=document.createElement('a'); const brand=document.getElementById('brand-name').value.trim()||'compass'; link.download=`comm-compass-${brand.replace(/\s+/g,'-').toLowerCase()}-${dateStamp()}.png`; link.href=canvas.toDataURL('image/png'); link.click(); showToast('🖼 Map saved as PNG'); }catch(err){showToast('Could not capture — try again');} finally{btn.disabled=false;btn.innerHTML='<span class="btn-icon">🖼</span> Save Map';} }
+async function generateReport(){ if(!competitors.length){showToast('Add at least one competitor first');return;} document.getElementById('report-modal').classList.add('open'); const channelCount={}; competitors.forEach(c=>c.channels.forEach(ch=>{channelCount[ch]=(channelCount[ch]||0)+1;})); const total=competitors.length, sorted=Object.entries(channelCount).sort((a,b)=>b[1]-a[1]), saturated=sorted.filter(([,n])=>n/total>=0.6).map(([ch])=>ch), opportunities=channels.filter(ch=>!channelCount[ch]), recommended=sorted.filter(([,n])=>n/total>0&&n/total<0.6).map(([ch])=>ch).slice(0,5), brand=getBrandData(); document.getElementById('report-subtitle').textContent=`${total} competitor${total>1?'s':''} analysed · ${Object.keys(channelCount).length} channels mapped · ${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}`; let html=''; if(brand.name!=='Brand'||brand.positioning||brand.audience||brand.industry){html+=`<div class="brand-info-box"><strong>${escHtml(brand.name)}</strong>${brand.positioning?`<div class="positioning">"${escHtml(brand.positioning)}"</div>`:''} ${brand.audience?`<div style="font-size:0.67rem;color:var(--ink-light);margin-top:3px;">Audience: ${escHtml(brand.audience)}</div>`:''} ${brand.industry?`<div style="font-size:0.67rem;color:var(--ink-light);">Industry: ${escHtml(brand.industry)}</div>`:''}</div>`;} html+=`<div class="report-section"><div class="report-section-title">Channel Frequency Ranking</div>`; if(!sorted.length)html+=`<p style="font-size:0.73rem;color:var(--ink-light)">No channels added yet.</p>`; else sorted.forEach(([ch,n])=>{const pct=Math.round(n/total*100);const col=pct>=60?'#e63c3c':pct>=30?'#e6963c':'#5cb85c';html+=`<div class="channel-bar-row"><div class="channel-bar-name">${escHtml(ch)}</div><div class="channel-bar-track"><div class="channel-bar-fill" style="width:${pct}%;background:${col}"></div></div><div class="channel-bar-count">${n}/${total}</div></div>`;}); html+=`</div><div class="report-section"><div class="report-section-title">Oversaturated Channels (60%+)</div><div class="tag-list">`; if(saturated.length)saturated.forEach(ch=>{html+=`<div class="tag saturated">${escHtml(ch)}</div>`;});else html+=`<span style="font-size:0.71rem;color:var(--ink-light)">No channel at 60% saturation yet.</span>`; html+=`</div></div><div class="report-section"><div class="report-section-title">Untapped Opportunities</div><div class="tag-list">`; if(opportunities.length)opportunities.slice(0,12).forEach(ch=>{html+=`<div class="tag opportunity">${escHtml(ch)}</div>`;});else html+=`<span style="font-size:0.71rem;color:var(--ink-light)">All channels used by at least one competitor.</span>`; html+=`</div></div><div class="report-section"><div class="report-section-title">Recommended for ${escHtml(brand.name)}</div><div class="tag-list">`; if(recommended.length)recommended.forEach(ch=>{html+=`<div class="tag recommended">${escHtml(ch)}</div>`;});else html+=`<span style="font-size:0.71rem;color:var(--ink-light)">Add more competitors for recommendations.</span>`; html+=`</div></div><div class="report-section"><div class="report-section-title">AI Strategic Insight</div><div id="ai-insight"><div class="ai-loading"><div class="spinner"></div> Generating strategic analysis…</div></div></div>`; document.getElementById('report-body').innerHTML=html; try{const resp=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:buildAIPrompt(sorted,saturated,opportunities,recommended,total,brand)}]})}); const data=await resp.json(); const text=data.content?.map(b=>b.text||'').join('')||'Unable to generate insight.'; document.getElementById('ai-insight').innerHTML=`<div class="ai-text">${escHtml(text)}</div>`;}catch(e){document.getElementById('ai-insight').innerHTML=`<div class="ai-text" style="color:var(--ink-light)">AI analysis unavailable.</div>`;} }
+function buildAIPrompt(sorted,saturated,opportunities,recommended,total,brand){const compSummary=competitors.map(c=>`- ${c.name} (${c.type}): ${c.channels.join(', ')||'no channels listed'}`).join('\n');const brandCtx=[brand.name!=='Brand'?`Brand: ${brand.name}`:'',brand.positioning?`Positioning: "${brand.positioning}"`: '',brand.audience?`Audience: ${brand.audience}`:'',brand.industry?`Industry: ${brand.industry}`:''].filter(Boolean).join('\n');return `You are a strategic communications consultant. Write a concise strategic report (4–6 paragraphs, plain prose, no bullets, no markdown).\n\n${brandCtx?`BRAND:\n${brandCtx}\n\n`:''}COMPETITORS (${total}):\n${compSummary}\n\nDATA:\nFrequency: ${sorted.map(([ch,n])=>`${ch}(${n}/${total})`).join(', ')}\nOversaturated: ${saturated.join(', ')||'none'}\nUntapped: ${opportunities.slice(0,8).join(', ')||'none'}\nRecommended: ${recommended.join(', ')||'none'}\n\nCover: (1) landscape norms, (2) risks of saturated channels, (3) whitespace opportunities, (4) recommended mix.`;}
+function exportReportPDF(){const modal=document.getElementById('report-modal');const actions=modal.querySelector('.modal-actions');const closeBtn=modal.querySelector('.modal-close');actions.style.visibility='hidden';closeBtn.style.visibility='hidden';const origTitle=document.title;const brand=document.getElementById('brand-name').value.trim()||'Brand';document.title=`Communication Compass Report — ${brand}`;window.print();setTimeout(()=>{actions.style.visibility='';closeBtn.style.visibility='';document.title=origTitle;},800);}
 function closeReport(){ document.getElementById('report-modal').classList.remove('open'); }
-
-// UTILS
 function escHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function dateStamp(){ const d=new Date(); return `${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}`; }
 function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.style.opacity='1'; t.style.transform='translateX(-50%) translateY(0)'; setTimeout(()=>{t.style.opacity='0';t.style.transform='translateX(-50%) translateY(80px)';},2800); }
-
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape') closeReport();
-  if(e.key==='Enter'&&document.activeElement.id==='comp-name-input') addCompetitor();
-  if(e.key==='Enter'&&document.activeElement.id==='custom-channel-input') addCustomChannel();
-});
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeReport(); if(e.key==='Enter'&&document.activeElement.id==='comp-name-input') addCompetitor(); if(e.key==='Enter'&&document.activeElement.id==='custom-channel-input') addCustomChannel(); });
 </script>
 </body>
 </html>
